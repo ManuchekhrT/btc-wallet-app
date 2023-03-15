@@ -1,3 +1,8 @@
-# Bitcoin Wallet
+# BTC Wallet
 
-### Testnet Bitcoin Wallet, using BitcoinJ library
+### Testnet BTC Wallet, using BitcoinJ library
+- Kotlin
+- Jetpack Compose
+- bitcoinj library
+- Dagger hilt
+
