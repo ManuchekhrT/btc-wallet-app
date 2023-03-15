@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BTC Wallet</string>
+    <string name="tbtc_amount">%1$s tBTC</string>
+    <string name="balance">Balance</string>
+    <string name="amount">Amount</string>
+    <string name="address">Address</string>
+    <string name="send">Send</string>
+    <string name="my_address">My address</string>
+    <string name="copy">Copy</string>
+    <string name="current_percent">Downloading database: %1$s%%</string>
+    <string name="connecting_to_peers">Connecting to peers, please wait.</string>
+    <string name="cancel">Cancel</string>
+    <string name="mining_fee">Mining Fee</string>
+    <string name="are_you_sure">Are you sure you want to transfer</string>
+    <string name="to_address">to address</string>
+    <string name="funds_sent">Your funds have been sent!</string>
+    <string name="your_tx_id">"Your transaction ID is "</string>
+    <string name="ok">Ok</string>
+    <string name="incorrect_amount">Incorrect amount.</string>
+    <string name="total">Total</string>
+</resources>
