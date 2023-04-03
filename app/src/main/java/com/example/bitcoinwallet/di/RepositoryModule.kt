@@ -1,7 +1,7 @@
 package com.example.bitcoinwallet.di
 
 import android.content.Context
-import com.example.bitcoinwallet.data.BTCWalletRepository
+import com.example.bitcoinwallet.data.WalletRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,13 +13,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-
     @Provides
     @Singleton
-    fun provideWalletApi(
+    fun provideWalletRepository(
         @ApplicationContext context: Context
-    ): BTCWalletRepository {
-        return BTCWalletRepository(context = context)
+    ): WalletRepository {
+        return WalletRepository(context = context)
     }
 
 }

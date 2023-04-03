@@ -73,7 +73,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
     // BitCoinJ
-    implementation 'org.bitcoinj:bitcoinj-core:0.16.1'
+    implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
 
     // logger
     implementation 'org.slf4j:slf4j-api:2.0.1'

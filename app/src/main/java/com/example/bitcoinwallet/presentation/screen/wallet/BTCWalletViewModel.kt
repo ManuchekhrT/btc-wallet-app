@@ -4,22 +4,18 @@ import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.bitcoinwallet.data.BTCWalletRepository
+import com.example.bitcoinwallet.data.WalletRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.bitcoinj.core.Coin
 import javax.inject.Inject
 
 @HiltViewModel
 class BTCWalletViewModel @Inject constructor(
-    private val walletApi: BTCWalletRepository
+    private val walletRepository: WalletRepository
 ) : ViewModel() {
 
     companion object {
         private const val TAG = "WalletViewModel"
-    }
-
-    init {
-        start()
     }
 
     private val _balance = mutableStateOf("")
@@ -55,6 +51,10 @@ class BTCWalletViewModel @Inject constructor(
     private val _amountFeeTotal = mutableStateOf(Triple("", "", ""))
     val amountFeeTotal: State<Triple<String, String, String>> = _amountFeeTotal
 
+    init {
+        start()
+    }
+
     fun updateAmountToSend(value: String) {
         _amountToSend.value = value
         _isAmountCorrect.value = value.toDoubleOrNull()?.let { true } ?: false
@@ -72,7 +72,7 @@ class BTCWalletViewModel @Inject constructor(
     }
 
     private fun start() {
-        walletApi.startWallet(
+        walletRepository.startWallet(
             balance = {
                 _balance.value = it
                 _isLoaded.value = true
@@ -84,23 +84,20 @@ class BTCWalletViewModel @Inject constructor(
                 _txId.value = txid
             },
             onDownloadProgress = { pct ->
-                _downloadPercent.value = pct
+                _downloadPercent.value = 100
             }
         )
     }
 
     fun calculateAmount() {
-        _amountFeeTotal.value = walletApi.calculateAmount(
-            recipientAddress = addressToSend.value,
+        _amountFeeTotal.value = walletRepository.createTransaction(
+            toAddress = addressToSend.value,
             amount = amountToSend.value
         )
     }
 
     fun send() {
-        walletApi.send(
-            recipientAddress = addressToSend.value,
-            amount = amountToSend.value
-        )
+        walletRepository.broadcastTransaction()
         _addressToSend.value = ""
         _amountToSend.value = ""
     }
